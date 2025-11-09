@@ -9,21 +9,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-:root {
-    --bg-primary: #0b1120;
-    --bg-secondary: #1e293b;
-    --bg-card: #111827;
-    --accent: #f97316;
-    --accent-secondary: #fb923c;
+     :root {
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #1a1a1a;
+    --bg-card: #1e1e1e;
+    --accent: #10b981;
+    --accent-secondary: #34d399;
     --text-primary: #ffffff;
-    --text-secondary: #cbd5e1;
-    --text-muted: #94a3b8;
-    --border: #334155;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --border: #2d2d2d;
     --success: #22c55e;
-    --warning: #eab308;
-    --gradient: linear-gradient(135deg, #1e3a8a 0%, #f97316 100%);
-    --gradient-accent: linear-gradient(135deg, #2563eb 0%, #f97316 100%);
+    --warning: #facc15;
+    --gradient: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+    --gradient-accent: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
 }
+
 
 
 
@@ -166,15 +167,16 @@
         }
 
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: radial-gradient(circle at 20% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(249, 115, 22, 0.1) 0%, transparent 50%);
-            position: relative;
-            overflow: hidden;
-        }
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 20% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.15) 0%, transparent 50%);
+    position: relative;
+    overflow: hidden;
+}
+
 
         .hero::before {
             content: '';
@@ -522,15 +524,17 @@
             margin-bottom: 4rem;
         }
 
-        .section-header h2 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+       .section-header h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #10b981 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+
 
         .section-header p {
             font-size: 1.2rem;
@@ -715,7 +719,7 @@
         <div class="hero-content">
             <div class="hero-text">
                 <h1>Naser Al-Mahmoud</h1>
-                <p class="tagline">Data Science & AI Expert</p>
+                <p class="tagline">Data Scientist & AI Engineer</p>
                 <p class="description">
                     Passionate about leveraging cutting-edge AI and machine learning technologies to solve real-world problems. 
                     Currently pursuing excellence in Data Science at JUST with a focus on NLP and Deep Learning.
@@ -733,7 +737,7 @@
             </div>
             <div class="hero-visual">
                 <div class="profile-card">
-                    <img src="profile.jpg" alt="Naser Al-Mahmoud" class="profile-pic">
+                    <img src="picture.png" alt="Naser Al-Mahmoud" class="profile-pic">
                     <h3>Distinction</h3>
                     <p>GPA: 4.07/4.00</p>
                     <div class="social-links">
@@ -775,7 +779,7 @@
         <div style="margin-top: 4rem; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
             <p style="font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8;">
                 As a 4th-year Data Science student at Jordan University of Science and Technology (JUST), 
-                I've maintained a GPA of 4.07/4.00, placing me in the top 5% of my cohort. My academic journey 
+                I've maintained a GPA of 4.07/4.00, placing me in the top 3% of my cohort. My academic journey 
                 has been driven by a deep passion for leveraging data to address real-world challenges, 
                 specializing in AI, Deep Learning, NLP, Big Data, and Computer Vision.
             </p>
@@ -1010,8 +1014,8 @@
                     <div class="timeline-date">2022 - 2026</div>
                     <h3>Bachelor of Science in Data Science</h3>
                     <h4>Jordan University of Science and Technology (JUST)</h4>
-                    <p><strong>GPA:</strong> 4.07/4.00 (Top 5% of cohort)</p>
-                    <p><strong>Relevant Coursework:</strong> Machine Learning, Deep Learning, Natural Language Processing, Big Data Analytics, Computer Vision, Data Mining, Statistical Modeling, Database Systems</p>
+                    <p><strong>GPA:</strong> 4.07/4.00 (Top 3% of cohort)</p>
+                    <p><strong>Relevant Coursework:</strong> Machine Learning, Deep Learning, Natural Language Processing, Big Data Analytics, Computer Vision, Database Systems</p>
                 </div>
             </div>
             
@@ -1107,7 +1111,7 @@
                     <i class="fab fa-github"></i>
                     <div>
                         <strong>GitHub</strong>
-                        <p>NaserMahmoud</p>
+                        <p>NaserMohannad</p>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -1259,6 +1263,14 @@
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
 
 
 
