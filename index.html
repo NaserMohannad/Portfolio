@@ -316,6 +316,38 @@
             --bg-primary: #ffffff; --bg-secondary: #f8fafc; --bg-card: #ffffff;
             --text-primary: #1a1a1a; --text-secondary: #666666; --text-muted: #999999; --border: #e2e8f0;
         }
+
+        /* 1. PARTICLE CANVAS */
+        #particle-canvas { position: absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+
+        /* 2. GLASSMORPHISM */
+        .glass {
+            background: rgba(30,30,30,0.55) !important;
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.08) !important;
+        }
+        body.light .glass { background: rgba(255,255,255,0.65) !important; border: 1px solid rgba(0,0,0,0.08) !important; }
+
+        /* 3. TYPEWRITER */
+        .typewriter-text {
+            display: inline-block; border-right: 3px solid var(--accent);
+            white-space: nowrap; overflow: hidden; width: 0;
+            animation: typing 2.4s steps(32,end) 0.6s forwards, blink 0.75s step-end infinite;
+        }
+        @keyframes typing { from{width:0} to{width:100%} }
+        @keyframes blink { 0%,100%{border-color:var(--accent)} 50%{border-color:transparent} }
+
+        /* 4. SKILL PROGRESS BARS */
+        .skill-bars { margin-top:1.25rem; display:flex; flex-direction:column; gap:0.7rem; }
+        .skill-bar-item { display:flex; flex-direction:column; gap:0.2rem; }
+        .skill-bar-label { display:flex; justify-content:space-between; font-size:0.82rem; color:var(--text-secondary); }
+        .skill-bar-track { height:5px; background:var(--border); border-radius:999px; overflow:hidden; }
+        .skill-bar-fill { height:100%; border-radius:999px; width:0; background:var(--gradient-accent); transition: width 1.3s cubic-bezier(0.22,1,0.36,1); }
+
+        /* 5. SVG WAVE DIVIDERS */
+        .wave-divider { display:block; width:100%; overflow:hidden; line-height:0; }
+        .wave-divider svg { display:block; width:100%; }
     </style>
 </head>
 <body>
@@ -346,10 +378,11 @@
     </nav>
 
     <section id="home" class="hero">
+        <canvas id="particle-canvas"></canvas>
         <div class="hero-content">
             <div class="hero-text">
                 <h1>Naser Al-Mahmoud</h1>
-                <p class="tagline">Data Scientist & AI Engineer</p>
+                <p class="tagline"><span class="typewriter-text">Data Scientist & AI Engineer</span></p>
                 <p class="description">
                     Passionate about leveraging cutting-edge AI and machine learning technologies to solve real-world problems. 
                     Currently pursuing excellence in Data Science at JUST with a focus on NLP and Deep Learning.
@@ -370,7 +403,7 @@
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="profile-card">
+                <div class="profile-card glass">
                     <img src="picture.png" alt="Naser Al-Mahmoud" class="profile-pic">
                     <h3>Distinction</h3>
                     <p>GPA: 4.07/4.00</p>
@@ -385,6 +418,13 @@
             </div>
         </div>
     </section>
+
+    <!-- wave down -->
+    <div class="wave-divider">
+      <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--bg-secondary)" opacity="0.4"/>
+      </svg>
+    </div>
 
     <section id="about">
         <div class="section-header">
@@ -423,76 +463,68 @@
         </div>
     </section>
 
+    <div class="wave-divider">
+      <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0,0 C480,60 960,0 1440,40 L1440,60 L0,60 Z" fill="var(--bg-primary)" opacity="0.5"/>
+      </svg>
+    </div>
+
     <section id="skills">
         <div class="section-header">
             <h2>Technical Skills</h2>
             <p>Expertise across the full spectrum of AI and Data Science technologies</p>
         </div>
         <div class="skills-grid">
-            <div class="skill-category">
+            <div class="skill-category glass">
                 <h3><i class="fas fa-brain"></i> Machine Learning & AI</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">TensorFlow</span>
-                    <span class="skill-tag">PyTorch</span>
-                    <span class="skill-tag">Scikit-learn</span>
-                    <span class="skill-tag">Keras</span>
-                    <span class="skill-tag">Boosting Algorithms</span>
-                    <span class="skill-tag">AI Agents</span>
-                    <span class="skill-tag">HuggingFace</span>
+                <div class="skill-bars">
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>PyTorch / TensorFlow</span><span>95%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>Scikit-learn</span><span>92%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="92"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>HuggingFace</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>AI Agents</span><span>88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div></div>
                 </div>
             </div>
-            <div class="skill-category">
+            <div class="skill-category glass">
                 <h3><i class="fas fa-language"></i> NLP & Deep Learning</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">BERT</span>
-                    <span class="skill-tag">Transformers</span>
-                    <span class="skill-tag">LSTM</span>
-                    <span class="skill-tag">CNN</span>
-                    <span class="skill-tag">Fine-Tuning</span>
-                    <span class="skill-tag">spaCy</span>
-                    <span class="skill-tag">QLoRA / LoRA</span>
+                <div class="skill-bars">
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>Transformers / BERT</span><span>93%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="93"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>LSTM / BiLSTM</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="90"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>QLoRA / LoRA Fine-Tuning</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>RAG Systems</span><span>88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div></div>
                 </div>
             </div>
-            <div class="skill-category">
+            <div class="skill-category glass">
                 <h3><i class="fas fa-code"></i> Programming Languages</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">SQL</span>
-                    <span class="skill-tag">NoSQL</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">C++</span>
+                <div class="skill-bars">
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>Python</span><span>97%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="97"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>SQL / NoSQL</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>JavaScript</span><span>72%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="72"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>C++</span><span>70%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div></div>
                 </div>
             </div>
-            <div class="skill-category">
+            <div class="skill-category glass">
                 <h3><i class="fas fa-database"></i> Data & Analytics</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">Pandas</span>
-                    <span class="skill-tag">NumPy</span>
-                    <span class="skill-tag">Excel</span>
-                    <span class="skill-tag">Matplotlib</span>
-                    <span class="skill-tag">Statistical Learning</span>
-                    <span class="skill-tag">Seaborn</span>
-                    <span class="skill-tag">Tableau</span>
-                    <span class="skill-tag">Power BI</span>
-                    <span class="skill-tag">KNIME</span>
+                <div class="skill-bars">
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>Pandas / NumPy</span><span>95%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="95"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>Tableau / Power BI</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>Statistical Learning</span><span>88%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>KNIME</span><span>78%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div></div>
                 </div>
             </div>
-            <div class="skill-category">
+            <div class="skill-category glass">
                 <h3><i class="fas fa-cloud"></i> Cloud & Big Data</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">PySpark</span>
-                    <span class="skill-tag">SparkML</span>
-                    <span class="skill-tag">Hadoop</span>
-                    <span class="skill-tag">Azure AI</span>
+                <div class="skill-bars">
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>PySpark / SparkML</span><span>82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>Hadoop</span><span>75%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>Azure AI</span><span>78%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="78"></div></div></div>
                 </div>
             </div>
-            <div class="skill-category">
+            <div class="skill-category glass">
                 <h3><i class="fas fa-eye"></i> Computer Vision</h3>
-                <div class="skill-tags">
-                    <span class="skill-tag">YOLO</span>
-                    <span class="skill-tag">ResNet</span>
-                    <span class="skill-tag">Image Processing</span>
-                    <span class="skill-tag">Object Detection</span>
+                <div class="skill-bars">
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>ResNet / CNN</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>YOLO / Object Detection</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div></div>
+                    <div class="skill-bar-item"><div class="skill-bar-label"><span>Image Processing</span><span>82%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div></div>
                 </div>
             </div>
         </div>
@@ -505,7 +537,7 @@
             <p>Building real-world AI systems that drive business impact</p>
         </div>
         <div class="experience-grid">
-            <div class="experience-card" style="border-color: rgba(16,185,129,0.4); box-shadow: 0 0 20px rgba(16,185,129,0.08);">
+            <div class="experience-card glass" style="border-color: rgba(16,185,129,0.4); box-shadow: 0 0 20px rgba(16,185,129,0.08);">
                 <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.5rem;">
                     <span style="background: linear-gradient(135deg,#10b981,#3b82f6); color:white; padding:0.2rem 0.8rem; border-radius:20px; font-size:0.75rem; font-weight:700;">🍁 Mitacs Globalink Research Internship</span>
                     <span style="background:rgba(16,185,129,0.15); color:var(--accent); padding:0.2rem 0.7rem; border-radius:20px; font-size:0.75rem; font-weight:600; border:1px solid var(--accent);">● Active</span>
@@ -515,20 +547,17 @@
                         <h3>Research Intern — NLP / AI</h3>
                         <h4>Ontario Tech University (OTU) · Oshawa, Canada</h4>
                     </div>
-                    <span class="exp-date">April 30, 2026 – September 1, 2026</span>
+                    <span class="exp-date">April 30, 2025 – September 1, 2025</span>
                 </div>
                 <ul class="exp-bullets">
                     <li>Selected for the prestigious <strong>Mitacs Globalink Research Internship</strong> program, conducting cutting-edge NLP research at Ontario Tech University in Canada.</li>
                     <li>Working on multiple research projects with the goal of publishing at top-tier NLP venues including <strong>EMNLP</strong> and <strong>ACL</strong>.</li>
                 </ul>
             </div>
-            <div class="experience-card">
-                <div class="exp-header">
-                    <div class="exp-title">
-                        <h3>AI Engineer</h3>
+            <div class="experience-card glass">
                         <h4>ProTech · Remote</h4>
                     </div>
-                    <span class="exp-date">November 2026 – Present</span>
+                    <span class="exp-date">November 2025 – Present</span>
                 </div>
                 <ul class="exp-bullets">
                     <li>Architecting a Multi-Agent system enabling non-technical business leaders to query ERP databases using natural language (NL-to-SQL), eliminating manual data engineering and accelerating real-time insight retrieval.</li>
@@ -927,64 +956,138 @@
     </footer>
 
     <script>
+        /* LOADER */
         window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            setTimeout(() => { loader.classList.add('hidden'); }, 1500);
+            setTimeout(() => { document.getElementById('loader').classList.add('hidden'); }, 1200);
         });
+
+        /* NAV SCROLL */
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) { navbar.classList.add('scrolled'); }
-            else { navbar.classList.remove('scrolled'); }
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
-        const themeToggle = document.getElementById('themeToggle');
-        themeToggle.addEventListener('click', () => {
+
+        /* THEME */
+        document.getElementById('themeToggle').addEventListener('click', () => {
             document.body.classList.toggle('light');
-            const icon = themeToggle.querySelector('i');
-            icon.className = document.body.classList.contains('light') ? 'fas fa-sun' : 'fas fa-moon';
+            document.querySelector('#themeToggle i').className =
+                document.body.classList.contains('light') ? 'fas fa-sun' : 'fas fa-moon';
         });
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+
+        /* SMOOTH SCROLL */
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
+
+        /* ACTIVE NAV */
         window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-links a');
             let current = '';
-            sections.forEach(section => {
-                if (scrollY >= (section.offsetTop - 200)) { current = section.getAttribute('id'); }
+            document.querySelectorAll('section').forEach(s => {
+                if (scrollY >= s.offsetTop - 200) current = s.getAttribute('id');
             });
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) { link.classList.add('active'); }
+            document.querySelectorAll('.nav-links a').forEach(a => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + current);
             });
         });
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('fade-in-up'); } });
+
+        /* FADE IN UP */
+        const fadeObs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('fade-in-up'); });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        document.querySelectorAll('section').forEach(section => { observer.observe(section); });
-        const animateCounter = (element, target) => {
-            let current = 0;
-            const increment = target / 100;
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) { current = target; clearInterval(timer); }
-                element.textContent = target % 1 === 0 ? Math.floor(current) : current.toFixed(2);
+        document.querySelectorAll('section').forEach(s => fadeObs.observe(s));
+
+        /* COUNTER ANIMATION */
+        const animateCounter = (el, target) => {
+            let cur = 0; const inc = target / 100;
+            const t = setInterval(() => {
+                cur += inc;
+                if (cur >= target) { cur = target; clearInterval(t); }
+                el.textContent = target % 1 === 0 ? Math.floor(cur) : cur.toFixed(2);
             }, 20);
         };
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const number = entry.target.querySelector('.stat-number');
-                    const target = parseFloat(number.textContent);
-                    animateCounter(number, target);
-                    statsObserver.unobserve(entry.target);
+        const statsObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const n = e.target.querySelector('.stat-number');
+                    animateCounter(n, parseFloat(n.textContent));
+                    statsObs.unobserve(e.target);
                 }
             });
         });
-        document.querySelectorAll('.stat-card').forEach(card => { statsObserver.observe(card); });
+        document.querySelectorAll('.stat-card').forEach(c => statsObs.observe(c));
+
+        /* ── 1. PARTICLE CANVAS ── */
+        (function() {
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            let W, H, particles = [];
+            const COLORS = ['rgba(16,185,129,', 'rgba(59,130,246,', 'rgba(167,139,250,'];
+            const N = 70;
+
+            function resize() {
+                W = canvas.width  = canvas.offsetWidth;
+                H = canvas.height = canvas.offsetHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            function randomParticle() {
+                return {
+                    x: Math.random() * W, y: Math.random() * H,
+                    r: Math.random() * 2 + 0.5,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    color: COLORS[Math.floor(Math.random() * COLORS.length)],
+                    a: Math.random() * 0.5 + 0.1
+                };
+            }
+            for (let i = 0; i < N; i++) particles.push(randomParticle());
+
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+                for (let i = 0; i < N; i++) {
+                    const p = particles[i];
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = p.color + p.a + ')';
+                    ctx.fill();
+                    // lines to neighbours
+                    for (let j = i + 1; j < N; j++) {
+                        const q = particles[j];
+                        const dist = Math.hypot(p.x - q.x, p.y - q.y);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+                            ctx.strokeStyle = p.color + (0.08 * (1 - dist / 120)) + ')';
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                    p.x += p.vx; p.y += p.vy;
+                    if (p.x < 0 || p.x > W) p.vx *= -1;
+                    if (p.y < 0 || p.y > H) p.vy *= -1;
+                }
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+
+        /* ── 4. SKILL PROGRESS BARS (animate on scroll) ── */
+        const barObs = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+                        bar.style.width = bar.dataset.width + '%';
+                    });
+                    barObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.skill-category').forEach(c => barObs.observe(c));
     </script>
 </body>
 </html>
